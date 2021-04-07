@@ -1,4 +1,14 @@
 import cv2
+import argparse
+
+# 设置参数
+ap = argparse.ArgumentParser()
+ap.add_argument("-i", "--input", required=True,
+	help="path to input image")
+ap.add_argument("-H", "--huakuai", required=True,
+	help="path to template huakuai image")
+args = vars(ap.parse_args())
+
 def identify_gap(bg,tp,out):
  '''
  bg: 背景图片
@@ -10,8 +20,8 @@ def identify_gap(bg,tp,out):
  tp_img = cv2.imread(tp) # 缺口图片
  
  # 识别图片边缘
- bg_edge = cv2.Canny(bg_img, 100, 200)
- tp_edge = cv2.Canny(tp_img, 100, 200)
+ bg_edge = cv2.Canny(bg_img, 200, 200)
+ tp_edge = cv2.Canny(tp_img, 200, 200)
  
  # 转换图片格式
  bg_pic = cv2.cvtColor(bg_edge, cv2.COLOR_GRAY2RGB)
@@ -34,4 +44,6 @@ def identify_gap(bg,tp,out):
 
 
 
-identify_gap("./55.png", "./hk.jpg", "output.jpg")
+X = identify_gap(args["input"], args["huakuai"], "output.jpg")
+
+print(X)
