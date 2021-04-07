@@ -12,3 +12,9 @@ python .\ocr_template_match.py -i ./images/credit_card_01.png -t ocr_a_reference
 ```
 python .\ocr_template_match.py -i ./images/credit_card_01.png -t ocr_a_reference.png
 ```
+
+### 边缘检测模板匹配破解滑块验证码
+
+```
+python .\huakuai-recognition\huakuai.py
+···
