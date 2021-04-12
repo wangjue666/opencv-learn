@@ -17,4 +17,11 @@ python .\ocr_template_match.py -i ./images/credit_card_01.png -t ocr_a_reference
 
 ```
 python .\huakuai-recognition\huakuai.py
-···
+```
+
+
+### 全景图像拼接
+
+```
+python .\image-mosaic\index.py
+```
