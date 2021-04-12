@@ -1,24 +1,27 @@
 import cv2
-
-
+import time
+start_time = time.time()
 # 读取背景图片和缺口图片
-bg_img = cv2.imread('55.png') # 背景图片
-tp_img = cv2.imread('hk2.png') # 缺口图片
+bg_img = cv2.imread('./train/picture-2.png') # 背景图片
+tp_img = cv2.imread('HK4.jpg') # 缺口图片
+end_time = time.time()
+print('read %f second' % (end_time - start_time))
 
 
+start_time2 = time.time()
 # 识别图片边缘
 bg_edge = cv2.Canny(bg_img, 200, 200)
-tp_edge = cv2.Canny(tp_img, 200, 200)
+tp_edge = cv2.Canny(tp_img, 200, 200, L2gradient = False)
 
 # 将灰度图转换RGB格式
 bg_pic = cv2.cvtColor(bg_edge, cv2.COLOR_GRAY2RGB)
 tp_pic = cv2.cvtColor(tp_edge, cv2.COLOR_GRAY2RGB)
 
-cv2.imshow('dst',bg_pic) 
-cv2.waitKey(0) 
+# cv2.imshow('dst',bg_pic) 
+# cv2.waitKey(0) 
 
-cv2.imshow('dst',tp_pic) 
-cv2.waitKey(0) 
+# cv2.imshow('dst',tp_pic) 
+# cv2.waitKey(0) 
 # 缺口匹配 在背景图片中搜索对应的缺口
 res = cv2.matchTemplate(bg_pic, tp_pic, cv2.TM_CCOEFF_NORMED)
 
@@ -30,6 +33,8 @@ print(min_val, max_val, min_loc, max_loc )
 # X 即为 横坐标偏移量
 X = max_loc[0]
 
+end_time2 = time.time()
+print('read %f second' % (end_time2 - start_time2))
 # 绘制方框
 
 # 获取滑块图片的长和宽
